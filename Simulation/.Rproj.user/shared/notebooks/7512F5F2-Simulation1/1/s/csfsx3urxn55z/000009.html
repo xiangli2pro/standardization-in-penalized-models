@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+<script src="lib/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lib/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="lib/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lib/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="lib/kePrint-0.0.1/kePrint.js"></script>
+<link href="lib/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+</head>
+<body>
+<table class=" lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>Recreating booktabs style table</caption>
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Coeff </th>
+   <th style="text-align:left;"> p=0.5 </th>
+   <th style="text-align:left;"> p=0.7 </th>
+   <th style="text-align:left;"> p=0.9 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr grouplength="5"><td colspan="4" style="background-color: white; color: blue;"><strong>None standardization</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Intercept </td>
+   <td style="text-align:left;"> 3.46 (0.11) </td>
+   <td style="text-align:left;"> 3.71 (0.11) </td>
+   <td style="text-align:left;"> 3.85 (0.1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Z_cont </td>
+   <td style="text-align:left;"> 1.52 (0.04) </td>
+   <td style="text-align:left;"> 1.43 (0.04) </td>
+   <td style="text-align:left;"> 1.32 (0.04) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_bi </td>
+   <td style="text-align:left;"> 2.43 (0.07) </td>
+   <td style="text-align:left;"> 2.57 (0.1) </td>
+   <td style="text-align:left;"> 3.15 (0.25) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f1 </td>
+   <td style="text-align:left;"> -1.55 (0.12) </td>
+   <td style="text-align:left;"> -1.48 (0.12) </td>
+   <td style="text-align:left;"> -1.4 (0.11) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f2 </td>
+   <td style="text-align:left;"> -3.3 (0.12) </td>
+   <td style="text-align:left;"> -3.11 (0.12) </td>
+   <td style="text-align:left;"> -2.9 (0.11) </td>
+  </tr>
+  <tr grouplength="5"><td colspan="4" style="background-color: white; color: blue;"><strong>1 SD standardization</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Intercept </td>
+   <td style="text-align:left;"> 3.47 (0.11) </td>
+   <td style="text-align:left;"> 3.71 (0.11) </td>
+   <td style="text-align:left;"> 3.85 (0.1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Z_cont </td>
+   <td style="text-align:left;"> 1.52 (0.04) </td>
+   <td style="text-align:left;"> 1.43 (0.04) </td>
+   <td style="text-align:left;"> 1.32 (0.04) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Z_bi </td>
+   <td style="text-align:left;"> 1.22 (0.04) </td>
+   <td style="text-align:left;"> 1.18 (0.05) </td>
+   <td style="text-align:left;"> 0.94 (0.07) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f1 </td>
+   <td style="text-align:left;"> -0.73 (0.06) </td>
+   <td style="text-align:left;"> -0.7 (0.06) </td>
+   <td style="text-align:left;"> -0.66 (0.05) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f2 </td>
+   <td style="text-align:left;"> -1.55 (0.06) </td>
+   <td style="text-align:left;"> -1.47 (0.05) </td>
+   <td style="text-align:left;"> -1.37 (0.05) </td>
+  </tr>
+  <tr grouplength="5"><td colspan="4" style="background-color: white; color: blue;"><strong>Andrew Gelman</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Intercept </td>
+   <td style="text-align:left;"> 3.47 (0.11) </td>
+   <td style="text-align:left;"> 3.71 (0.11) </td>
+   <td style="text-align:left;"> 3.85 (0.1) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Z_cont </td>
+   <td style="text-align:left;"> 3.04 (0.09) </td>
+   <td style="text-align:left;"> 2.86 (0.08) </td>
+   <td style="text-align:left;"> 2.64 (0.07) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_bi </td>
+   <td style="text-align:left;"> 2.43 (0.07) </td>
+   <td style="text-align:left;"> 2.57 (0.1) </td>
+   <td style="text-align:left;"> 3.15 (0.25) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f1 </td>
+   <td style="text-align:left;"> -1.55 (0.12) </td>
+   <td style="text-align:left;"> -1.48 (0.12) </td>
+   <td style="text-align:left;"> -1.4 (0.11) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f2 </td>
+   <td style="text-align:left;"> -3.3 (0.12) </td>
+   <td style="text-align:left;"> -3.11 (0.11) </td>
+   <td style="text-align:left;"> -2.9 (0.11) </td>
+  </tr>
+  <tr grouplength="5"><td colspan="4" style="background-color: white; color: blue;"><strong>Min-max</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Intercept </td>
+   <td style="text-align:left;"> -2.36 (0.45) </td>
+   <td style="text-align:left;"> -1.79 (0.43) </td>
+   <td style="text-align:left;"> -1.21 (0.4) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Z_cont </td>
+   <td style="text-align:left;"> 11.66 (0.67) </td>
+   <td style="text-align:left;"> 10.99 (0.59) </td>
+   <td style="text-align:left;"> 10.14 (0.58) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_bi </td>
+   <td style="text-align:left;"> 2.43 (0.07) </td>
+   <td style="text-align:left;"> 2.57 (0.1) </td>
+   <td style="text-align:left;"> 3.15 (0.25) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f1 </td>
+   <td style="text-align:left;"> -1.56 (0.12) </td>
+   <td style="text-align:left;"> -1.48 (0.12) </td>
+   <td style="text-align:left;"> -1.4 (0.11) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi_f2 </td>
+   <td style="text-align:left;"> -3.3 (0.12) </td>
+   <td style="text-align:left;"> -3.11 (0.12) </td>
+   <td style="text-align:left;"> -2.9 (0.11) </td>
+  </tr>
+  <tr grouplength="4"><td colspan="4" style="background-color: white; color: blue;"><strong>New standardization, no 2sd</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Intercept </td>
+   <td style="text-align:left;"> -0.14 (0.05) </td>
+   <td style="text-align:left;"> 0.55 (0.04) </td>
+   <td style="text-align:left;"> 1.09 (0.03) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Z_cont </td>
+   <td style="text-align:left;"> 1.97 (0.07) </td>
+   <td style="text-align:left;"> 2.09 (0.09) </td>
+   <td style="text-align:left;"> 2.67 (0.25) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_bi </td>
+   <td style="text-align:left;"> 1.96 (0.06) </td>
+   <td style="text-align:left;"> 2.08 (0.09) </td>
+   <td style="text-align:left;"> 2.66 (0.24) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi </td>
+   <td style="text-align:left;"> 2.18 (0.1) </td>
+   <td style="text-align:left;"> 2.04 (0.1) </td>
+   <td style="text-align:left;"> 1.93 (0.09) </td>
+  </tr>
+  <tr grouplength="4"><td colspan="4" style="background-color: white; color: blue;"><strong>New standardization, with 2sd</strong></td></tr>
+<tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Intercept </td>
+   <td style="text-align:left;"> -0.14 (0.05) </td>
+   <td style="text-align:left;"> 0.55 (0.04) </td>
+   <td style="text-align:left;"> 1.09 (0.03) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> Z_cont </td>
+   <td style="text-align:left;"> 1.97 (0.07) </td>
+   <td style="text-align:left;"> 1.92 (0.09) </td>
+   <td style="text-align:left;"> 1.6 (0.15) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_bi </td>
+   <td style="text-align:left;"> 1.96 (0.06) </td>
+   <td style="text-align:left;"> 1.91 (0.08) </td>
+   <td style="text-align:left;"> 1.6 (0.14) </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;padding-left: 2em;" indentlevel="1"> X_multi </td>
+   <td style="text-align:left;"> 2.05 (0.09) </td>
+   <td style="text-align:left;"> 1.92 (0.09) </td>
+   <td style="text-align:left;"> 1.82 (0.09) </td>
+  </tr>
+</tbody>
+</table> <script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"]]}})</script><script async src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

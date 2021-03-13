@@ -1,0 +1,9 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","library(knitr)"
+"0","library(kableExtra)"
+"2","Error: package or namespace load failed for ‘kableExtra’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so':
+  dlopen(/Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so, 6): Library not loaded: /opt/X11/lib/libfreetype.6.dylib
+  Referenced from: /Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so
+  Reason: image not found
+"

@@ -1,0 +1,6 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","library(knitr)"
+"0","library(kableExtra)"
+"0","library(dplyr)"
+"0","load(""simulation1_data/res_ratio_t2.rda"")"
+"0","load(""simulation1_data/res_coef_t2.rda"")"

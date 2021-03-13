@@ -1,0 +1,77 @@
+## lars and glmnet
+
+packages <- c("glmnet","MASS", "tidyverse","doParallel","foreach","caret","faraway","gglasso")
+lapply(packages, require, ch=TRUE)
+
+set.seed(2021)
+n <- 10000
+p <- 12
+mu <- rep(0,p)
+Sigma <- diag(rep(1,p))
+
+beta_0 <- 0
+beta_p <- c(rep(0.05,3),rep(-0.05,3),rep(0,6))
+
+X <- mvrnorm(n = n,mu = mu,Sigma = Sigma) %>% as.data.frame()
+colnames(X) <- paste0("X",c(1:p))
+
+Z <- Z_gen(X)
+Z_gen <- function(X){
+
+  Z <- data.frame(Z1=X$X1,
+                  Z2=ifelse(X$X2<=qnorm(p=0.5, mean=0, sd=1),0,1),
+                  Z3=ifelse(X$X3<=qnorm(p=0.7, mean=0, sd=1),0,1),
+                  Z4=ifelse(X$X4<=qnorm(p=0.9, mean=0, sd=1),0,1),
+                  Z5=factor(ifelse(X$X5<=qnorm(p=1/3, mean=0, sd=1),"f0",
+                                   ifelse(X$X5<=qnorm(p=2/3, mean=0, sd=1),"f1","f2")),
+                            levels = paste0("f",c(0,1,2))),
+                  Z6=factor(ifelse(X$X6<=qnorm(p=1/4, mean=0, sd=1),"f0",
+                                   ifelse(X$X6<=qnorm(p=2/4, mean=0, sd=1),"f1",
+                                          ifelse(X$X6<=qnorm(p=3/4, mean=0, sd=1),"f2","f3"))),
+                            levels = paste0("f",c(0,1,2,3))),
+                  Z7=X$X7,
+                  Z8=ifelse(X$X8<=qnorm(p=0.5, mean=0, sd=1),0,1),
+                  Z9=ifelse(X$X9<=qnorm(p=0.7, mean=0, sd=1),0,1),
+                  Z10=ifelse(X$X10<=qnorm(p=0.9, mean=0, sd=1),0,1),
+                  Z11=factor(ifelse(X$X11<=qnorm(p=1/3, mean=0, sd=1),"f0",
+                                    ifelse(X$X11<=qnorm(p=2/3, mean=0, sd=1),"f1","f2")),
+                             levels = paste0("f",c(0,1,2))),
+                  Z12=factor(ifelse(X$X12<=qnorm(p=1/4, mean=0, sd=1),"f0",
+                                    ifelse(X$X12<=qnorm(p=2/4, mean=0, sd=1),"f1",
+                                           ifelse(X$X12<=qnorm(p=3/4, mean=0, sd=1),"f2","f3"))),
+                             levels = paste0("f",c(0,1,2,3)))
+
+  )
+
+  return(Z)
+}
+
+save(X, Z, file='norm_XZ2.rda')
+
+
+source('sim_exp_funcs.R')
+## generate plot data
+#load('norm_XZ.rda')
+
+p1 <- mod_plot(mod_data1$mod_1,mod_title = "None Stand.")
+p2 <- mod_plot(mod_data1$mod_2,mod_title = "Gelman Stand.")
+p3 <- mod_plot(mod_data1$mod_3,mod_title = "Min-Max Stand.")
+p6 <- mod_plot(mod_data1$mod_6,mod_title = "Z-Score Stand.")
+#p4 <- mod_plot(mod_data1$mod_4,mod_title = "Proposed w/o 2sd Stand.")
+p5 <- mod_plot(mod_data1$mod_5,mod_title = "Proposed w/ 2sd Stand.")
+
+ggarrange(p1, p2, p3, p6, p5, ncol=2, nrow=3, 
+          common.legend = TRUE, legend="left",
+          fig.lab = "Figure 1: Data 1", fig.lab.face = "bold")
+
+d1 <- mod_plot(mod_data2$mod_1,mod_title = "None Stand.")
+d2 <- mod_plot(mod_data2$mod_2,mod_title = "Gelman Stand.")
+d3 <- mod_plot(mod_data2$mod_3,mod_title = "Min-Max Stand.")
+d6 <- mod_plot(mod_data2$mod_6,mod_title = "Z-Score Stand.")
+#p4 <- mod_plot(mod_data2$mod_4,mod_title = "Proposed w/o 2sd Stand.")
+d5 <- mod_plot(mod_data2$mod_5,mod_title = "Proposed w/ 2sd Stand.")
+
+ggarrange(d1, d2, d3,d6,d5, ncol=2, nrow=3, 
+          common.legend = TRUE, legend="left",
+          fig.lab = "Figure 2: Data 2", fig.lab.face = "bold")
+
