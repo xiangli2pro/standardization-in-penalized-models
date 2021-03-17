@@ -6,8 +6,9 @@
 ## Date: 03-16-2021
 
 ## Output:
-##
-
+## res_norm_all.rda, res_norm_indep.rda, res_norm_part.rda
+## res_exp.rda, res_gamma.rda
+## summary_tables.rda
 
 ##---------------------------------------------------------------
 

@@ -9,7 +9,8 @@
 ## sum_func(), multi_fix(), multi_random()
 ## nzero_coef_1se(), get_select_1se(), get_sens_1se(), get_sepc_1se(), get_cvm_1se()
 ## nzero_coef_min(), get_select_min(), get_sens_min(), get_sepc_min(), get_cvm_min()
-## mod_plot(), plot_data(), Z_gen(), Z_exp_gamma(), Z_gen_gamma()
+## mod_plot(), plot_data(), Z_gen_normal(), Z_exp_gamma(), Z_gen_gamma()
+## summary_func()
 
 ##---------------------------------------------------------------
 

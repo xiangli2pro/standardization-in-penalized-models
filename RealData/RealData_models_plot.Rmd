@@ -1,0 +1,26 @@
+---
+title: "RealData_models_plot"
+output: html_document
+---
+
+\
+\
+\
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning=FALSE)
+```
+
+```{r message=FALSE, warning=FALSE,echo=FALSE, fig.height=6, fig.width=8, fig.align='center'}
+source("RealData_models_plot.R")
+
+ggarrange(p_BIC_bic1se, p_AUC_bic1se, p_BIC_auc1se, p_AUC_auc1se,
+          ncol=2, nrow=2, 
+          common.legend = TRUE, legend="left", align = "h", 
+          heights = c(4, 4), widths = c(4,4))
+```
+
