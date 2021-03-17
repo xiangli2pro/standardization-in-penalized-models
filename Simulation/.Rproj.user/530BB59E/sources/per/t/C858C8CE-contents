@@ -184,6 +184,3 @@ colnames(res_ratio_t2) <- c("Coeff_ratio","p=0.5","p=0.7","p=0.9")
 save(res_ratio_t2,file = "simulation1_data/res_ratio_t2.rda")
 
 
-Error: package or namespace load failed for ‘kableExtra’ in dyn.load(file, DLLpath = DLLpath, ...): unable to load shared object '/Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so': dlopen(/Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so, 6): Library not loaded: /opt/X11/lib/libfreetype.6.dylib Referenced from: /Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so Reason: image not found
-
-https://github.com/yixuan/showtext/issues/13

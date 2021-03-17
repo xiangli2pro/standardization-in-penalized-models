@@ -22,7 +22,7 @@ load("simulation1_data/res_coef_t2.rda")
 
 ```{r results='asis', echo=FALSE, message=FALSE, warning=FALSE}
 res_ratio_t2 %>% 
-  kbl(caption = "Recreating booktabs style table") %>%
+  kbl(caption = "ratio of Z_cont coefficient to Z_bi coefficient") %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   pack_rows("None standardization", 1, 1, label_row_css = "background-color: white; color: blue;") %>%
   pack_rows("1 SD standardization", 2, 2, label_row_css = "background-color: white; color: blue;") %>%
@@ -43,7 +43,7 @@ res_ratio_t2 %>%
 \
 ```{r results='asis', echo=FALSE, message=FALSE, warning=FALSE}
 res_coef_t2 %>% 
-  kbl(caption = "Recreating booktabs style table") %>%
+  kbl(caption = "standardized coefficients") %>%
   kable_classic(full_width = F, html_font = "Cambria") %>%
   pack_rows("None standardization", 1, 5, label_row_css = "background-color: white; color: blue;") %>%
   pack_rows("1 SD standardization", 6, 10, label_row_css = "background-color: white; color: blue;") %>%

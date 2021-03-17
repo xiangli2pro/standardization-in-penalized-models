@@ -434,7 +434,7 @@ plot_data <- function(data_rda){
 
 
 # Transform X to Z: normal distribution
-Z_gen <- function(X){
+Z_gen_normal <- function(X){
 
   Z <- data.frame(Z1=X$X1,
                   Z2=ifelse(X$X2<=qnorm(p=0.5, mean=0, sd=1),0,1),
@@ -532,3 +532,108 @@ Z_gen_gamma <- function(X){
   
   return(Z)
 }
+
+
+
+
+# make summary table of simulation2 data
+summary_func <- function(res_data){
+  
+  # convert to matrix
+  res <- rbind(do.call(rbind,res_data))
+  
+  # data with lambda_1se
+  res_1se <- res[,c(seq(1,24,by=6),seq(1,24,by=6)+1,seq(1,24,by=6)+2,
+                    seq(1,24,by=6)+3,seq(1,24,by=6)+4,seq(1,24,by=6)+5, 49:(49+71))]
+  res_1se_m <- colMeans(res_1se)
+  res_1se_sd <- apply(res_1se,2,sd)
+  
+  # data with lambda_min
+  res_min <- res[,c(24+c(seq(1,24,by=6),seq(1,24,by=6)+1,seq(1,24,by=6)+2,
+                         seq(1,24,by=6)+3,seq(1,24,by=6)+4,seq(1,24,by=6)+5), (49+71+1):192)]
+  res_min_m <- colMeans(res_min)
+  res_min_sd <- apply(res_min,2,sd)
+  
+  # rearrange table of lambda_1se
+  res_1se_m_df <- data.frame(Model1=c(res_1se_m[c(c(1:4),
+                                                  c(25:(25+11)) )]),
+                             Model2=c(res_1se_m[c(4+c(1:4),
+                                                  12+c(25:(25+11)) )]),
+                             Model3=c(res_1se_m[c(4*2+c(1:4),
+                                                  12*2+c(25:(25+11)) )]),
+                             Model4=c(res_1se_m[c(4*3+c(1:4),
+                                                  12*3+c(25:(25+11)) )]),
+                             Model5=c(res_1se_m[c(4*4+c(1:4),
+                                                  12*4+c(25:(25+11)) )]),
+                             Model6=c(res_1se_m[c(4*5+c(1:4),
+                                                  12*5+c(25:(25+11)) )])) 
+  res_1se_m_df[11:16,] <- 1- res_1se_m_df[11:16,]
+  res_1se_m_df <- res_1se_m_df %>% round(2) %>%  format(2) %>% as.matrix()
+  
+  res_1se_sd_df <- data.frame(Model1=c(res_1se_sd[c(c(1:4),
+                                                    c(25:(25+11)) )]),
+                              Model2=c(res_1se_sd[c(4+c(1:4),
+                                                    12+c(25:(25+11)) )]),
+                              Model3=c(res_1se_sd[c(4*2+c(1:4),
+                                                    12*2+c(25:(25+11)) )]),
+                              Model4=c(res_1se_sd[c(4*3+c(1:4),
+                                                    12*3+c(25:(25+11)) )]),
+                              Model5=c(res_1se_sd[c(4*4+c(1:4),
+                                                    12*4+c(25:(25+11)) )]),
+                              Model6=c(res_1se_sd[c(4*5+c(1:4),
+                                                    12*5+c(25:(25+11)) )])) %>% 
+    round(2) %>% format(2) %>% as.matrix()
+  
+  # combine mean and sd
+  res_1se_table <- matrix(paste0(res_1se_m_df, " (", res_1se_sd_df, ")"), nrow = nrow(res_1se_sd_df), byrow = FALSE)
+  
+  # rearrange table of lambda_min
+  res_min_m_df <- data.frame(Model1=c(res_min_m[c(c(1:4),
+                                                  c(25:(25+11)) )]),
+                             Model2=c(res_min_m[c(4+c(1:4),
+                                                  12+c(25:(25+11)) )]),
+                             Model3=c(res_min_m[c(4*2+c(1:4),
+                                                  12*2+c(25:(25+11)) )]),
+                             Model4=c(res_min_m[c(4*3+c(1:4),
+                                                  12*3+c(25:(25+11)) )]),
+                             Model5=c(res_min_m[c(4*4+c(1:4),
+                                                  12*4+c(25:(25+11)) )]),
+                             Model6=c(res_min_m[c(4*5+c(1:4),
+                                                  12*5+c(25:(25+11)) )]))
+  res_min_m_df[11:16,] <- 1- res_min_m_df[11:16,]
+  res_min_m_df <- res_min_m_df %>% round(2) %>%  format(2) %>% as.matrix()
+  
+  res_min_sd_df <- data.frame(Model1=c(res_min_sd[c(c(1:4),
+                                                    c(25:(25+11)) )]),
+                              Model2=c(res_min_sd[c(4+c(1:4),
+                                                    12+c(25:(25+11)) )]),
+                              Model3=c(res_min_sd[c(4*2+c(1:4),
+                                                    12*2+c(25:(25+11)) )]),
+                              Model4=c(res_min_sd[c(4*3+c(1:4),
+                                                    12*3+c(25:(25+11)) )]),
+                              Model5=c(res_min_sd[c(4*4+c(1:4),
+                                                    12*4+c(25:(25+11)) )]),
+                              Model6=c(res_min_sd[c(4*5+c(1:4),
+                                                    12*5+c(25:(25+11)) )])) %>% round(2) %>% format(2) %>% as.matrix()
+  
+  res_min_table <- matrix(paste0(res_min_m_df, " (", res_min_sd_df, ")"), nrow = nrow(res_min_sd_df), byrow = FALSE)
+  
+  # setup names
+  rownames(res_1se_table) <- c("lambda","sensitivity","specificity","miss-class",
+                               "Z1_cont","Z2_bi_p=0.5","Z3_bi_p=0.7","Z4_bi_p=0.9",
+                               "Z5_multi_p=1/3","Z6_multi_p=1/4",
+                               "Z7_cont","Z8_bi_p=0.5","Z9_bi_p=0.7","Z10_bi_p=0.9",
+                               "Z11_multi_p=1/3","Z12_multi_p=1/4")
+  
+  rownames(res_min_table) <- c("lambda","sensitivity","specificity","miss-class",
+                               "Z1_cont","Z2_bi_p=0.5","Z3_bi_p=0.7","Z4_bi_p=0.9",
+                               "Z5_multi_p=1/3","Z6_multi_p=1/4",
+                               "Z7_cont","Z8_bi_p=0.5","Z9_bi_p=0.7","Z10_bi_p=0.9",
+                               "Z11_multi_p=1/3","Z12_multi_p=1/4")
+  
+  summary_table <- cbind(res_1se_table[,c(1,6,2:5)],res_min_table[,c(1,6,2:5)])
+  colnames(summary_table) <- rep(c("None","Z-score","AG","Min-max","Proposed","Proposed-2sd"),2)
+  
+  return(summary_table)
+}
+

@@ -38,7 +38,7 @@ beta_p <- c(2,2,-2)
 
 
 
-## function: return standardized coefficients under different standarization methods
+## function: return standardized coefficients under different standardization methods
 coeff_func_p <- function(beta_0, beta_p, n, mu,Sigma, p=0.5){
   
   # generate latent data X
@@ -136,8 +136,8 @@ sd_table <- cbind(sum_func(res_p0.5,q)$p_sd,
 res_coef_t1 <- matrix(paste0(mean_table," (",sd_table,")"),nrow = nrow(mean_table),byrow = FALSE)
 
 # create row names
-row_name <- c(rep(c("Intercept","Z_cont","X_bi","X_multi_f1","X_multi_f2"),4),
-              rep(c("Intercept","Z_cont","X_bi","X_multi"),2))
+row_name <- c(rep(c("Intercept","Z_cont","Z_bi","Z_multi_f1","Z_multi_f2"),4),
+              rep(c("Intercept","Z_cont","Z_bi","Z_multi"),2))
 
 # add coeff. names as a new column
 res_coef_t2 <- cbind(Coeff=row_name,res_coef_t1)
@@ -184,6 +184,3 @@ colnames(res_ratio_t2) <- c("Coeff_ratio","p=0.5","p=0.7","p=0.9")
 save(res_ratio_t2,file = "simulation1_data/res_ratio_t2.rda")
 
 
-Error: package or namespace load failed for ‘kableExtra’ in dyn.load(file, DLLpath = DLLpath, ...): unable to load shared object '/Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so': dlopen(/Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so, 6): Library not loaded: /opt/X11/lib/libfreetype.6.dylib Referenced from: /Library/Frameworks/R.framework/Versions/3.6/Resources/library/systemfonts/libs/systemfonts.so Reason: image not found
-
-https://github.com/yixuan/showtext/issues/13
