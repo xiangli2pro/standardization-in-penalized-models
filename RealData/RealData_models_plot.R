@@ -33,14 +33,14 @@ grp_lambda_seq <- exp(seq(log(15000),0,length.out = 140))[1:125]
 val_df <- cbind(grp_lambda_seq,t(do.call(rbind,res_pq0.9))) %>% as.data.frame()
 colnames(val_df) <- c("lambda",paste0(c("logLik","AIC","BIC","AUC","No.cont","No.bi","No.multi"),
                                       "_",
-                                      rep(c("none","zscore","gelman","minmax","propose"),each=7)))
+                                      rep(c("none","zscore","gelman","minmax","proposed"),each=7)))
 
 val_df <- val_df %>% 
   add_column(No.var_none = rowSums(val_df[,c("No.cont_none","No.bi_none","No.multi_none")]),
              No.var_zscore = rowSums(val_df[,c("No.cont_zscore","No.bi_zscore","No.multi_zscore")]),
              No.var_gelman = rowSums(val_df[,c("No.cont_gelman","No.bi_gelman","No.multi_gelman")]),
              No.var_minmax = rowSums(val_df[,c("No.cont_minmax","No.bi_minmax","No.multi_minmax")]),
-             No.var_propose = rowSums(val_df[,c("No.cont_propose","No.bi_propose","No.multi_propose")]))
+             No.var_proposed = rowSums(val_df[,c("No.cont_proposed","No.bi_proposed","No.multi_proposed")]))
 
 val_df_long <- val_df %>% pivot_longer(cols=-lambda,
                                        names_to=c(".value","Standardization"),
@@ -83,17 +83,18 @@ val_bic_1se_ybic <- sapply(c(1:5),function(i) val_bic[,i][val_bic_midx[i]])
 
 p_BIC_bic1se <- ggplot(val_df_long, aes(No.var, BIC, linetype=Standardization, size=Standardization)) +
   geom_line() +
-  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","propose"),
+  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","proposed"),
                         values=c("longdash","solid","twodash","dashed","dotted"))+
-  scale_size_manual(breaks=c("none","zscore","gelman","minmax","propose"), 
+  scale_size_manual(breaks=c("none","zscore","gelman","minmax","proposed"), 
                     values=c(0.2,0.5,0.2,0.2,0.6))+
   annotate("point", x = val_bic_novar, y = val_bic_1se_ybic, size =1.4,shape=16) +
   annotate("text", x = val_bic_novar[c(2,5)], y = val_bic_1se_ybic[c(2,5)],
-           label=c("zscore","propose"),
+           label=c("zscore","proposed"),
            vjust=c(0,0),
            hjust=c(-0.2,1.2),size=2)+
   xlim(5,80) +
   ylim(80000,100000)+
+  xlab("Number of selected covariates")+
   theme_bw()+
   theme(aspect.ratio=0.8)+
   theme(legend.key.width = unit(1,"cm"))
@@ -103,16 +104,18 @@ val_bic_1se_yauc <- sapply(c(1:5),function(i) val_auc[,i][val_bic_midx[i]])
 
 p_AUC_bic1se <- ggplot(val_df_long, aes(No.var, AUC, linetype=Standardization, size=Standardization)) +
   geom_line() +
-  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","propose"),
+  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","proposed"),
                         values=c("longdash","solid","twodash","dashed","dotted"))+
-  scale_size_manual(breaks=c("none","zscore","gelman","minmax","propose"), 
+  scale_size_manual(breaks=c("none","zscore","gelman","minmax","proposed"), 
                     values=c(0.2,0.5,0.2,0.2,0.6))+
   annotate("point", x = val_bic_novar, y = val_bic_1se_yauc, size =1.4,shape=16) +
   annotate("text", x = val_bic_novar[c(2,5)], y = val_bic_1se_yauc[c(2,5)],
-           label=c("zscore","propose"),
+           label=c("zscore","proposed"),
            vjust=c(0,0),
            hjust=c(-0.3, 1.2),size=2)+
   ylim(0.75,0.87)+
+  xlim(5,80) +
+  xlab("Number of selected covariates")+
   theme_bw()+
   theme(legend.key.width = unit(1,"cm"))
 
@@ -125,16 +128,17 @@ val_auc_1se_ybic <- sapply(c(1:5),function(i) val_bic[,i][val_auc_midx[i]])
 
 p_BIC_auc1se <- ggplot(val_df_long, aes(No.var, BIC, linetype=Standardization, size=Standardization)) +
   geom_line() +
-  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","propose"),
+  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","proposed"),
                         values=c("longdash","solid","twodash","dashed","dotted"))+
-  scale_size_manual(breaks=c("none","zscore","gelman","minmax","propose"), 
+  scale_size_manual(breaks=c("none","zscore","gelman","minmax","proposed"), 
                     values=c(0.2,0.5,0.2,0.2,0.6))+
   annotate("point", x = val_auc_novar, y = val_auc_1se_ybic, size =1.4,shape=16) +
   annotate("text", x = val_auc_novar[c(2,5)], y = val_auc_1se_ybic[c(2,5)],
-           label=c("zscore","propose"),
+           label=c("zscore","proposed"),
            vjust=c(0,0.2),
            hjust=c(-0.2,1.2),size=2)+
   xlim(5,80) +
+  xlab("Number of selected covariates")+
   ylim(80000,100000)+
   theme_bw()+
   theme(aspect.ratio=0.8)+
@@ -146,16 +150,18 @@ val_auc_1se_yauc <- sapply(c(1:5),function(i) val_auc[,i][val_auc_midx[i]])
 
 p_AUC_auc1se <- ggplot(val_df_long, aes(No.var, AUC, linetype=Standardization, size=Standardization)) +
   geom_line() +
-  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","propose"),
+  scale_linetype_manual(breaks=c("none","zscore","gelman","minmax","proposed"),
                         values=c("longdash","solid","twodash","dashed","dotted"))+
-  scale_size_manual(breaks=c("none","zscore","gelman","minmax","propose"), 
+  scale_size_manual(breaks=c("none","zscore","gelman","minmax","proposed"), 
                     values=c(0.2,0.5,0.2,0.2,0.6))+
   annotate("point", x = val_auc_novar, y = val_auc_1se_yauc, size =1.4,shape=16) +
   annotate("text", x = val_auc_novar[c(2,5)], y = val_auc_1se_yauc[c(2,5)],
-           label=c("zscore","propose"),
+           label=c("zscore","proposed"),
            vjust=c(0,0),
            hjust=c(-0.3, 1.1),size=2)+
   ylim(0.75,0.87)+
+  xlim(5,80) +
+  xlab("Number of selected covariates")+
   theme_bw()+
   theme(legend.key.width = unit(1,"cm"))
 

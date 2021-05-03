@@ -24,3 +24,11 @@ ggarrange(p_BIC_bic1se, p_AUC_bic1se, p_BIC_auc1se, p_AUC_auc1se,
           heights = c(4, 4), widths = c(4,4))
 ```
 
+
+
+
+
+
+
+
+
