@@ -3,7 +3,7 @@
 ## Conduct Simulation 1. (Table 1)
 
 ## Author: Xiang Li
-## Date: 03-12-2021
+## Date: 05-13-2021
 
 ## Output:
 ## res_coef_update.rda (simulation raw table)
@@ -182,5 +182,4 @@ colnames(res_ratio_t2) <- c("Coeff_ratio","p=0.5","p=0.7","p=0.9")
 
 # save data
 save(res_ratio_t2,file = "simulation1_data/res_ratio_t2.rda")
-
 

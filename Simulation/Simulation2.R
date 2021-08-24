@@ -3,11 +3,14 @@
 ## Conduct Simulation 2. (Table 2,3)
 
 ## Author: Xiang Li
-## Date: 03-16-2021
+## Date: 05-13-2021
 
 ## Output:
-## res_norm_all.rda, res_norm_indep.rda, res_norm_part.rda
-## res_exp.rda, res_gamma.rda
+## res_norm_indep.rda (setup: latent normal covariates with independent covariance) 
+## res_norm_part.rda (setup: latent normal covariates with first six variables correlated) 
+## res_norm_all.rda (setup: latent normal covariates with all twelve variables correlated)
+## res_exp.rda (setup: latent exponential covariates with independent covariance) 
+## res_gamma.rda (setup: latent gamma covariates with independent covariance) 
 ## summary_tables.rda
 
 ##---------------------------------------------------------------
@@ -193,7 +196,7 @@ save(res_norm_all,file = "simulation2_data/res_norm_all.rda")
 
 
 
-## latent exponential distribution
+## latent exponential distribution: independent
 system.time(
   res_exp <- replicate(n=2000, penal_logist(beta_0, beta_p,K=3,n,p,mu,Sigma, dist="exp"), simplify = FALSE)
 )
@@ -202,7 +205,7 @@ save(res_exp,file = "simulation2_data/res_exp.rda")
 
 
 
-## latent gamma distribution
+## latent gamma distribution: independent
 system.time(
   res_gamma <- replicate(n=2000, penal_logist(beta_0, beta_p,K=3,n,p,mu,Sigma, dist="gamma"), simplify = FALSE)
 )

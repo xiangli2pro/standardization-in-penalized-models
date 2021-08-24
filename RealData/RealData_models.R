@@ -3,7 +3,7 @@
 ## Real Data Example. (Table 4,5)
 
 ## Author: Xiang Li
-## Date: 03-17-2021
+## Date: 05-13-2021
 
 ## Output:
 ## res_pq0.9.rda, res_propose_0.5.rda, res_propose_0.7.rda, res_propose_0.948.rda

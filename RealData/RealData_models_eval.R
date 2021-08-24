@@ -3,10 +3,12 @@
 ## Evaluate performance (AIC, BIC, AUC, etc) of models generated in RealData_models.R
 
 ## Author: Xiang Li
-## Date: 03-17-2021
+## Date: 05-13-2021
 
 ## Output:
-## 
+## features_bic.xlsx 
+## (predictors selected by the penalized model using the penalty lambda_BIC_1se,
+## when different standardization methods are applied)
 
 ##---------------------------------------------------------------
 

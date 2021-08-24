@@ -1,12 +1,9 @@
 ##---------------------------------------------------------------
 
-## Plot of figure1. BIC VS. No.var & AUC  VS. No.var
+## Plot of Figure 1. BIC(& AUC) vs. Number of selected covariates
 
 ## Author: Xiang Li
-## Date: 03-17-2021
-
-## Output:
-## 
+## Date: 05-13-2021
 
 ##---------------------------------------------------------------
 

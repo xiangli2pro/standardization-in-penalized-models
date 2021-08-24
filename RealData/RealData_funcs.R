@@ -1,11 +1,11 @@
 ##---------------------------------------------------------------
 
-## Functions called in Model_Real.R 
+## Functions called in RealData_models.R and RealData_models_eval.R
 
 ## Author: Xiang Li
 ## Date: 03-17-2021
 
-## Functions:
+## Functions created:
 ## LRT_func(), multi_reduce(), coef.rep(), cv_wgglasso()
 ## pattern_wgglasso()
 ## se_bic_func(), se_auc_func(), get_features(), cbind.fill(), get_form()
@@ -408,23 +408,5 @@ get_features <- function(X, y, X_weight, lambda, p=0.9, q=0.9, stand){
   
   return(coef_names)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

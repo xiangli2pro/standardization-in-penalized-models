@@ -3,9 +3,9 @@
 ## Functions called in Simulation1.R and Simulation2.R
 
 ## Author: Xiang Li
-## Date: 03-12-2021
+## Date: 05-13-2021
 
-## Functions:
+## Functions created:
 ## sum_func(), multi_fix(), multi_random()
 ## nzero_coef_1se(), get_select_1se(), get_sens_1se(), get_sepc_1se(), get_cvm_1se()
 ## nzero_coef_min(), get_select_min(), get_sens_min(), get_sepc_min(), get_cvm_min()

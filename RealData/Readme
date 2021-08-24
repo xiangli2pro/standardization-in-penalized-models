@@ -1,0 +1,16 @@
+1. For simulation code:
+  - Simulation_funcs.R contains all the helper functions
+  - Simulation1.R conducts simulation I, generates Table 1 in the manuscript
+  - Simulation2.R conducts simulation II, generates Table 2,3 in the manuscript
+  
+  
+2. For real data example code:
+  - RealData_funcs.R contains all the helper functions
+  - RealData_cleaning.R detials the steps of data processing
+  - RealData_models.R conducts penalized models on the standardized data
+  - RealData_models_eval.R evaluates the performance of models generated from RealData_models.R and creates Table 4,5 in the manuscript
+  - RealData_models_plot.R plots the Figure 1 in the manuscript
+  
+  
+3. Additional notes:
+  - National Ambulatory Medical Care Survey (NAMCS) data can be requested from CDC https://www.cdc.gov/nchs/ahcd/index.htm
